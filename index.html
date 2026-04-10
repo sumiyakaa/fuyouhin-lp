@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>リライフ東京 | 東京の不用品回収・粗大ゴミ処分</title>
+<meta name="description" content="東京都全域対応の不用品回収・粗大ゴミ処分ならリライフ東京。見積もり無料・即日対応・追加料金なし。24時間365日受付。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+/* ==================== CSS Custom Properties ==================== */
+:root {
+  --primary: #0B5ED7;
+  --primary-dark: #083D8F;
+  --accent: #F26522;
+  --accent-hover: #D4520F;
+  --trust-green: #00A651;
+  --bg: #F4F7FB;
+  --white: #FFFFFF;
+  --text: #1A1A1A;
+  --text-sub: #555555;
+  --gold: #D4A017;
+  --gold-light: #F2D06B;
+  --border: #E0E6ED;
+  --footer-bg: #1A2A3A;
+  --radius: 12px;
+  --shadow: 0 4px 20px rgba(0,0,0,0.07);
+  --shadow-hover: 0 12px 36px rgba(0,0,0,0.14);
+  --transition: .3s ease;
+}
+
+/* ==================== Reset ==================== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Noto Sans JP',sans-serif;font-weight:400;color:var(--text);line-height:1.8;background:var(--white);overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+ul,ol{list-style:none}
+
+/* ==================== Utility ==================== */
+.inner{max-width:1200px;margin:0 auto;padding:0 24px}
+.section-pad{padding:80px 0}
+.heading-wrap{text-align:center;margin-bottom:48px}
+.heading-wrap h2{font-size:clamp(1.5rem,3.5vw,2.2rem);font-weight:900;line-height:1.4;margin-bottom:12px}
+.heading-wrap h2 strong{color:var(--primary)}
+.heading-wrap p{color:var(--text-sub);font-size:.95rem}
+
+/* ==================== Buttons ==================== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:18px 36px;border-radius:50px;font-weight:700;font-size:1.05rem;cursor:pointer;transition:all var(--transition);border:none;text-align:center;line-height:1.4;font-family:inherit}
+.btn-accent{background:linear-gradient(135deg,var(--accent),var(--accent-hover));color:var(--white);box-shadow:0 4px 18px rgba(242,101,34,.4)}
+.btn-accent:hover{transform:scale(1.05);box-shadow:0 8px 28px rgba(242,101,34,.5)}
+.btn-green{background:linear-gradient(135deg,var(--trust-green),#008744);color:var(--white);box-shadow:0 4px 18px rgba(0,166,81,.4)}
+.btn-green:hover{transform:scale(1.05);box-shadow:0 8px 28px rgba(0,166,81,.5)}
+.btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary);padding:12px 28px;font-size:.95rem}
+.btn-outline:hover{background:var(--primary);color:var(--white)}
+
+/* ==================== Animations ==================== */
+@keyframes slideInLeft{from{opacity:0;transform:translateX(-60px)}to{opacity:1;transform:translateX(0)}}
+@keyframes popUp{from{opacity:0;transform:scale(.8) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(242,101,34,.5)}50%{box-shadow:0 0 0 18px rgba(242,101,34,0)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+
+.anim{opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease}
+.anim.visible{opacity:1;transform:translateY(0)}
+.anim-delay-1{transition-delay:.1s}
+.anim-delay-2{transition-delay:.2s}
+.anim-delay-3{transition-delay:.3s}
+.anim-delay-4{transition-delay:.4s}
+
+/* ==================== Header ==================== */
+.header{position:absolute;top:0;left:0;right:0;z-index:100;padding:16px 24px}
+.header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.header-logo{display:flex;align-items:baseline;gap:8px}
+.header-logo .logo-main{font-size:1.4rem;font-weight:900;color:var(--white);text-shadow:0 2px 8px rgba(0,0,0,.2)}
+.header-logo .logo-sub{font-size:.75rem;font-weight:500;color:rgba(255,255,255,.8);font-family:'Inter','Noto Sans JP',sans-serif}
+.header-phone{display:flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);backdrop-filter:blur(8px);padding:8px 20px;border-radius:50px;color:var(--white);font-weight:700;font-size:.9rem;transition:background var(--transition)}
+.header-phone:hover{background:rgba(255,255,255,.25)}
+
+/* ==================== Section 1: Hero ==================== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;background:linear-gradient(165deg,#5b9ee8 0%,var(--primary) 40%,var(--primary-dark) 100%);overflow:hidden}
+.hero::before{content:'';position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-10%;left:-5%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.05) 0%,transparent 70%);border-radius:50%}
+.hero-skyline{position:absolute;bottom:0;left:0;right:0;height:120px;opacity:.1}
+.hero-skyline svg{width:100%;height:100%;display:block}
+.hero-inner{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:120px 24px 80px;display:flex;align-items:center;gap:40px;width:100%}
+.hero-text{flex:0 0 55%;animation:slideInLeft .8s ease-out both}
+.hero-heading{font-size:clamp(1.8rem,4.5vw,3.2rem);font-weight:900;color:var(--white);line-height:1.3;margin-bottom:24px;text-shadow:0 2px 12px rgba(0,0,0,.15)}
+.hero-heading strong{color:var(--gold-light);display:inline}
+.hero-badges{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:20px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--white);font-weight:700;font-size:.9rem;padding:10px 20px;border-radius:8px;box-shadow:0 3px 12px rgba(212,160,23,.35);animation:popUp .5s ease-out both}
+.hero-badge:nth-child(1){animation-delay:.4s}
+.hero-badge:nth-child(2){animation-delay:.5s}
+.hero-badge:nth-child(3){animation-delay:.6s}
+.hero-badge svg{width:18px;height:18px;flex-shrink:0}
+.hero-stats{color:rgba(255,255,255,.9);font-size:1rem;margin-bottom:28px}
+.hero-stats .num{font-family:'Inter','Noto Sans JP',sans-serif;font-weight:700;font-size:2.4rem;color:var(--gold-light);vertical-align:baseline;margin:0 4px}
+.hero-cta{display:flex;flex-wrap:wrap;gap:16px}
+.hero-image{flex:0 0 45%;display:flex;justify-content:center;align-items:flex-end;animation:fadeInUp .8s ease-out .3s both}
+.hero-image picture{border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.25);transform:rotate(1deg)}
+.hero-image img{width:100%;height:auto;display:block}
+
+/* ==================== Section 2: Trust Bar ==================== */
+.trust-bar{background:linear-gradient(90deg,var(--primary-dark),var(--primary));padding:18px 0;overflow:hidden}
+.trust-bar-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;color:var(--white);font-weight:700;font-size:.95rem}
+.trust-item{display:flex;align-items:center;gap:8px;white-space:nowrap}
+.trust-item .star{color:#FFD700;font-size:1.1rem}
+.trust-divider{width:1px;height:24px;background:rgba(255,255,255,.3)}
+.pay-methods{display:flex;align-items:center;gap:12px}
+.pay-badge{background:rgba(255,255,255,.15);padding:4px 12px;border-radius:4px;font-size:.8rem;font-weight:500}
+
+/* ==================== Section 3: Worries ==================== */
+.worries{background:var(--white);position:relative;overflow:hidden}
+.worries::before{content:'';position:absolute;top:0;right:0;bottom:0;width:40%;background:linear-gradient(135deg,rgba(244,247,251,.5),rgba(244,247,251,0));pointer-events:none}
+.worry-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-bottom:48px}
+.worry-card{display:flex;align-items:flex-start;gap:16px;background:var(--white);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:0 var(--radius) var(--radius) 0;padding:28px 24px;transition:all var(--transition);box-shadow:var(--shadow)}
+.worry-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-hover)}
+.worry-icon{font-size:2rem;flex-shrink:0;width:48px;height:48px;display:flex;align-items:center;justify-content:center;background:rgba(242,101,34,.08);border-radius:12px}
+.worry-text{font-weight:500;font-size:1rem;line-height:1.6}
+.worry-resolve{text-align:center}
+.worry-resolve .arrow{font-size:2.5rem;color:var(--primary);display:block;margin-bottom:8px;line-height:1}
+.worry-resolve p{font-size:1.3rem;font-weight:900;color:var(--primary);margin-bottom:24px}
+
+/* ==================== Section 4: Reasons ==================== */
+.reasons{background:var(--bg);position:relative}
+.reasons::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--accent),var(--primary))}
+.reason-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.reason-grid .reason-card:nth-child(n+3){/* 3rd,4th,5th stay in auto flow */}
+.reason-bottom{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:28px}
+.reason-card{background:var(--white);border-radius:16px;padding:36px 28px;box-shadow:var(--shadow);transition:all var(--transition);position:relative;overflow:hidden}
+.reason-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.reason-card::after{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--primary),var(--primary-dark))}
+.reason-num{font-family:'Inter','Noto Sans JP',sans-serif;font-weight:700;font-size:.85rem;color:var(--white);background:var(--primary);width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.reason-icon{font-size:2.8rem;margin-bottom:16px;display:block}
+.reason-card h3{font-size:1.2rem;font-weight:900;margin-bottom:8px;color:var(--text)}
+.reason-card p{font-size:.9rem;color:var(--text-sub);line-height:1.7}
+
+/* ==================== Section 5: Pricing ==================== */
+.pricing{background:var(--white);position:relative;overflow:hidden}
+.pricing-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:32px}
+.price-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:all var(--transition);position:relative;box-shadow:var(--shadow)}
+.price-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.price-card.popular{border-color:var(--primary);box-shadow:0 8px 30px rgba(11,94,215,.15)}
+.price-card.popular::before{content:'人気 No.1';position:absolute;top:16px;right:-30px;background:var(--accent);color:var(--white);font-size:.75rem;font-weight:700;padding:4px 40px;transform:rotate(45deg);z-index:2}
+.price-header{background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--white);padding:20px 16px;text-align:center}
+.price-header h3{font-size:1.15rem;font-weight:900;margin-bottom:4px}
+.price-header p{font-size:.8rem;opacity:.85}
+.price-body{padding:28px 20px;text-align:center}
+.price-amount{font-family:'Inter','Noto Sans JP',sans-serif;font-size:2rem;font-weight:700;color:var(--accent);margin-bottom:8px;line-height:1.2}
+.price-amount .yen{font-size:1rem;font-weight:500;color:var(--text-sub)}
+.price-vehicle{font-size:.85rem;color:var(--text-sub);margin-bottom:20px}
+.price-note{text-align:center;font-size:.85rem;color:var(--text-sub);line-height:1.6}
+
+/* ==================== Section 6: Voice ==================== */
+.voice{background:var(--bg);position:relative}
+.voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.voice-card{background:var(--white);border-radius:var(--radius);padding:32px 28px;border-bottom:3px solid var(--primary);position:relative;box-shadow:var(--shadow);transition:all var(--transition)}
+.voice-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-hover)}
+.voice-card::before{content:'\201C';position:absolute;top:12px;left:20px;font-size:4rem;color:var(--primary);opacity:.15;line-height:1;font-family:Georgia,serif}
+.voice-stars{color:#FFD700;font-size:1.1rem;margin-bottom:16px;letter-spacing:2px}
+.voice-text{font-size:.95rem;line-height:1.8;margin-bottom:20px;padding-left:4px;position:relative;z-index:1}
+.voice-attr{font-size:.85rem;color:var(--text-sub);font-weight:500;text-align:right}
+
+/* ==================== Section 7: Flow ==================== */
+.flow{background:var(--white)}
+.flow-steps{display:flex;align-items:flex-start;justify-content:center;gap:0;position:relative}
+.flow-step{flex:1;text-align:center;padding:0 16px;position:relative}
+.flow-step:not(:last-child)::after{content:'';position:absolute;top:32px;right:-12px;width:24px;height:2px;background:var(--primary);opacity:.4}
+.flow-step:not(:last-child)::before{content:'';position:absolute;top:28px;right:-16px;width:10px;height:10px;border-right:2px solid var(--primary);border-bottom:2px solid var(--primary);transform:rotate(-45deg);opacity:.4}
+.flow-num{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--primary-dark));color:var(--white);font-family:'Inter','Noto Sans JP',sans-serif;font-weight:700;font-size:1.3rem;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(11,94,215,.25)}
+.flow-step h3{font-size:1rem;font-weight:900;margin-bottom:6px}
+.flow-step p{font-size:.8rem;color:var(--text-sub);line-height:1.6}
+
+/* ==================== Section 8: CTA ==================== */
+.cta-section{background:linear-gradient(135deg,var(--primary) 0%,var(--primary-dark) 100%);padding:80px 0;position:relative;overflow:hidden;text-align:center;color:var(--white)}
+.cta-section::before{content:'';position:absolute;top:-50%;right:-20%;width:500px;height:500px;background:radial-gradient(circle,rgba(255,255,255,.06) 0%,transparent 70%);border-radius:50%}
+.cta-section::after{content:'';position:absolute;bottom:-40%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.04) 0%,transparent 70%);border-radius:50%}
+.cta-inner{position:relative;z-index:2}
+.cta-section h2{font-size:clamp(1.4rem,3vw,2rem);font-weight:900;margin-bottom:24px;line-height:1.5}
+.cta-phone{font-family:'Inter','Noto Sans JP',sans-serif;font-size:clamp(2rem,5vw,3.2rem);font-weight:700;display:block;margin-bottom:8px;letter-spacing:2px}
+.cta-phone-note{font-size:.9rem;opacity:.8;margin-bottom:32px}
+.cta-web-badge{display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent-hover));padding:10px 28px;border-radius:50px;font-size:1rem;font-weight:700;margin-bottom:28px;box-shadow:0 4px 18px rgba(242,101,34,.4)}
+.cta-web-badge strong{font-size:1.4rem}
+.cta-buttons{display:flex;justify-content:center;flex-wrap:wrap;gap:20px}
+.cta-buttons .btn-accent{animation:pulse 2s infinite}
+
+/* ==================== Section 9: Footer ==================== */
+.footer{background:var(--footer-bg);color:rgba(255,255,255,.75);padding:48px 0 24px}
+.footer-inner{max-width:1200px;margin:0 auto;padding:0 24px}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;margin-bottom:40px;flex-wrap:wrap}
+.footer-brand .f-logo{font-size:1.3rem;font-weight:900;color:var(--white);margin-bottom:4px}
+.footer-brand .f-logo-sub{font-size:.75rem;color:rgba(255,255,255,.5);font-family:'Inter','Noto Sans JP',sans-serif;margin-bottom:12px}
+.footer-info{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.footer-info dl{display:flex;flex-direction:column;gap:4px}
+.footer-info dt{font-size:.75rem;color:rgba(255,255,255,.45);font-weight:500}
+.footer-info dd{font-size:.9rem;color:rgba(255,255,255,.8)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:.75rem;color:rgba(255,255,255,.4)}
+.footer-credit{font-size:.75rem;color:rgba(255,255,255,.35)}
+
+/* ==================== SP Bottom Bar ==================== */
+.sp-bottom-bar{display:none}
+
+/* ==================== Wave Divider ==================== */
+.wave-divider{width:100%;overflow:hidden;line-height:0}
+.wave-divider svg{display:block;width:100%;height:auto}
+.wave-divider.flip{transform:scaleY(-1)}
+
+/* ==================== Responsive: Tablet (1024px) ==================== */
+@media(max-width:1024px){
+  .hero-inner{flex-direction:column;text-align:center;padding-top:100px;gap:32px}
+  .hero-text{flex:none;width:100%}
+  .hero-heading{font-size:clamp(1.6rem,4vw,2.6rem)}
+  .hero-badges{justify-content:center}
+  .hero-cta{justify-content:center}
+  .hero-image{flex:none;width:80%;max-width:500px}
+  .hero-image picture{transform:rotate(0)}
+  .hero-stats{text-align:center}
+  .worry-grid{grid-template-columns:repeat(2,1fr)}
+  .reason-grid{grid-template-columns:repeat(2,1fr)}
+  .reason-bottom{grid-template-columns:repeat(3,1fr)}
+  .pricing-grid{grid-template-columns:repeat(2,1fr)}
+  .voice-grid{grid-template-columns:repeat(3,1fr)}
+  .flow-steps{flex-wrap:wrap;gap:24px}
+  .flow-step{flex:0 0 calc(33.33% - 16px)}
+  .flow-step:not(:last-child)::after,.flow-step:not(:last-child)::before{display:none}
+}
+
+/* ==================== Responsive: SP (768px) ==================== */
+@media(max-width:768px){
+  .section-pad{padding:56px 0}
+  .heading-wrap{margin-bottom:32px}
+  .heading-wrap h2{font-size:1.4rem}
+  body{font-size:15px;padding-bottom:64px}
+
+  /* Header SP fixed */
+  .header{position:fixed;background:linear-gradient(135deg,var(--primary),var(--primary-dark));padding:10px 16px;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+  .header-logo .logo-main{font-size:1.1rem}
+  .header-phone{padding:6px 14px;font-size:.8rem}
+
+  /* Hero SP */
+  .hero{min-height:auto;padding-top:64px}
+  .hero-inner{padding:80px 16px 48px;gap:24px}
+  .hero-heading{font-size:1.6rem}
+  .hero-badges{gap:8px}
+  .hero-badge{font-size:.8rem;padding:8px 14px}
+  .hero-stats .num{font-size:1.8rem}
+  .hero-cta{flex-direction:column;width:100%}
+  .hero-cta .btn{width:100%;padding:16px;font-size:1rem}
+  .hero-image{width:100%;max-width:none}
+
+  /* Trust Bar SP */
+  .trust-bar-inner{flex-direction:column;gap:10px;font-size:.85rem}
+  .trust-divider{display:none}
+
+  /* Worries SP */
+  .worry-grid{grid-template-columns:1fr;gap:16px}
+
+  /* Reasons SP */
+  .reason-grid{grid-template-columns:1fr}
+  .reason-bottom{grid-template-columns:1fr;margin-top:16px}
+  .reason-card{padding:28px 20px}
+
+  /* Pricing SP: horizontal scroll */
+  .pricing-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;gap:16px;padding-bottom:8px}
+  .price-card{flex:0 0 75%;scroll-snap-align:start;min-width:240px}
+
+  /* Voice SP */
+  .voice-grid{grid-template-columns:1fr;gap:20px}
+
+  /* Flow SP: timeline */
+  .flow-steps{flex-direction:column;gap:0;align-items:stretch}
+  .flow-step{display:flex;align-items:flex-start;text-align:left;gap:16px;padding:16px 0;border-left:3px solid var(--border);padding-left:24px;position:relative}
+  .flow-step:not(:last-child)::after,.flow-step:not(:last-child)::before{display:none}
+  .flow-step::after{content:'';position:absolute!important;left:-7px;top:24px;width:11px;height:11px;background:var(--primary);border-radius:50%;display:block!important}
+  .flow-num{width:48px;height:48px;font-size:1rem;margin:0;flex-shrink:0}
+  .flow-step-text{flex:1}
+  .flow-step h3{font-size:.95rem}
+
+  /* CTA SP */
+  .cta-section{padding:56px 0}
+  .cta-buttons{flex-direction:column;align-items:center;width:100%;padding:0 16px}
+  .cta-buttons .btn{width:100%}
+
+  /* Footer SP */
+  .footer-top{flex-direction:column;gap:24px}
+  .footer-info{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;text-align:center}
+
+  /* SP Bottom Bar */
+  .sp-bottom-bar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:1000;box-shadow:0 -2px 12px rgba(0,0,0,.15)}
+  .sp-bottom-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:16px 8px;font-weight:700;font-size:.9rem;color:var(--white);text-align:center}
+  .sp-bottom-btn.phone{background:var(--accent)}
+  .sp-bottom-btn.line{background:var(--trust-green)}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== Header ==================== -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <span class="logo-main">リライフ東京</span>
+      <span class="logo-sub">Re:Life Tokyo</span>
+    </div>
+    <a href="tel:0120-XXX-XXX" class="header-phone">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      0120-XXX-XXX
+    </a>
+  </div>
+</header>
+
+<!-- ==================== Section 1: Hero ==================== -->
+<section class="hero" id="hero">
+  <div class="hero-skyline">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,120 L0,95 L30,95 L30,70 L50,70 L50,55 L60,55 L60,40 L70,40 L70,55 L80,55 L80,70 L110,70 L110,85 L140,85 L140,60 L155,60 L155,45 L165,45 L165,30 L170,15 L175,30 L180,45 L190,45 L190,60 L210,60 L210,85 L260,85 L260,65 L280,65 L280,50 L295,50 L295,65 L310,65 L310,85 L370,85 L370,75 L385,75 L385,55 L395,55 L395,40 L405,40 L405,55 L415,55 L415,75 L440,75 L440,90 L520,90 L520,70 L540,70 L540,55 L555,55 L555,35 L560,20 L565,35 L570,55 L585,55 L585,70 L610,70 L610,90 L700,90 L700,80 L720,80 L720,60 L735,60 L735,45 L745,45 L745,60 L760,60 L760,80 L820,80 L820,90 L900,90 L900,75 L920,75 L920,55 L935,55 L935,40 L940,25 L945,40 L950,55 L965,55 L965,75 L1000,75 L1000,90 L1060,90 L1060,80 L1080,80 L1080,60 L1095,60 L1095,45 L1105,45 L1105,60 L1120,60 L1120,80 L1180,80 L1180,90 L1260,90 L1260,70 L1280,70 L1280,50 L1295,50 L1295,35 L1300,20 L1305,35 L1310,50 L1325,50 L1325,70 L1360,70 L1360,90 L1440,90 L1440,120 Z" fill="rgba(255,255,255,.12)"/>
+    </svg>
+  </div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <h1 class="hero-heading">
+        東京の不用品回収・<br>粗大ゴミ処分なら<br>
+        <strong>リライフ東京</strong>に<br>おまかせ！
+      </h1>
+      <div class="hero-badges">
+        <span class="hero-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+          見積もり無料
+        </span>
+        <span class="hero-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+          最安値に挑戦
+        </span>
+        <span class="hero-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-1 16l-4-4 1.41-1.41L11 14.17l6.59-6.59L19 9l-8 8z"/></svg>
+          即日対応
+        </span>
+      </div>
+      <p class="hero-stats">年間対応件数 <span class="num">3,000</span> 件以上</p>
+      <div class="hero-cta">
+        <a href="tel:0120-XXX-XXX" class="btn btn-accent">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          今すぐ電話で相談（24時間対応）
+        </a>
+        <a href="#" class="btn btn-green">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          LINEで無料見積もり
+        </a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <picture>
+        <source srcset="hero-staff.webp" type="image/webp">
+        <img src="hero-staff.webp" alt="笑顔で対応するリライフ東京のスタッフ" width="1200" height="800" loading="eager">
+      </picture>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Section 2: Trust Bar ==================== -->
+<section class="trust-bar">
+  <div class="trust-bar-inner">
+    <span class="trust-item">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      追加料金なしで安心！
+    </span>
+    <span class="trust-divider"></span>
+    <span class="trust-item">
+      <span class="star">★★★★★</span> Google口コミ 4.8 獲得！
+    </span>
+    <span class="trust-divider"></span>
+    <span class="trust-item">
+      お支払い方法:
+      <span class="pay-methods">
+        <span class="pay-badge">VISA</span>
+        <span class="pay-badge">Mastercard</span>
+        <span class="pay-badge">PayPay</span>
+      </span>
+    </span>
+  </div>
+</section>
+
+<!-- ==================== Section 3: Worries ==================== -->
+<section class="worries section-pad" id="worries">
+  <div class="inner">
+    <div class="heading-wrap anim">
+      <h2>不用品の処分、<strong>こんなお悩み</strong>ありませんか？</h2>
+    </div>
+    <div class="worry-grid">
+      <div class="worry-card anim">
+        <span class="worry-icon">🕐</span>
+        <p class="worry-text">引越しが迫っているのに<br>粗大ゴミが片付かない…</p>
+      </div>
+      <div class="worry-card anim anim-delay-1">
+        <span class="worry-icon">📦</span>
+        <p class="worry-text">量が多すぎて<br>自治体の回収では間に合わない</p>
+      </div>
+      <div class="worry-card anim anim-delay-2">
+        <span class="worry-icon">💰</span>
+        <p class="worry-text">処分費用がいくらかかるか<br>不安…</p>
+      </div>
+      <div class="worry-card anim anim-delay-3">
+        <span class="worry-icon">🏢</span>
+        <p class="worry-text">大型家具・家電の搬出が<br>自力では無理</p>
+      </div>
+    </div>
+    <div class="worry-resolve anim">
+      <span class="arrow">▼</span>
+      <p>リライフ東京が<strong>すべて解決</strong>します！</p>
+      <a href="tel:0120-XXX-XXX" class="btn btn-outline">まずは無料相談する</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Wave Divider ==================== -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C360,48 720,16 1440,40 L1440,48 L0,48 Z" fill="#F4F7FB"/>
+  </svg>
+</div>
+
+<!-- ==================== Section 4: Reasons ==================== -->
+<section class="reasons section-pad" id="reasons">
+  <div class="inner">
+    <div class="heading-wrap anim">
+      <h2>リライフ東京が選ばれる<strong>5つの理由</strong></h2>
+    </div>
+    <div class="reason-grid">
+      <div class="reason-card anim">
+        <span class="reason-num">01</span>
+        <span class="reason-icon">💰</span>
+        <h3>業界最安水準の料金</h3>
+        <p>自社リサイクルで廃棄コストを削減。その分をお客様に還元しています。他社様のお見積もりもお気軽にご相談ください。</p>
+      </div>
+      <div class="reason-card anim anim-delay-1">
+        <span class="reason-num">02</span>
+        <span class="reason-icon">⚡</span>
+        <h3>最短即日対応</h3>
+        <p>お電話から最短30分で現場到着。急な引越しや退去日が迫っている場合も対応いたします。</p>
+      </div>
+    </div>
+    <div class="reason-bottom">
+      <div class="reason-card anim">
+        <span class="reason-num">03</span>
+        <span class="reason-icon">✅</span>
+        <h3>追加料金一切なし</h3>
+        <p>見積もり金額から1円も上がりません。安心の明朗会計をお約束します。</p>
+      </div>
+      <div class="reason-card anim anim-delay-1">
+        <span class="reason-num">04</span>
+        <span class="reason-icon">👷</span>
+        <h3>100%自社スタッフ</h3>
+        <p>下請けなし。教育された正社員が丁寧に対応。ご近所への配慮も欠かしません。</p>
+      </div>
+      <div class="reason-card anim anim-delay-2">
+        <span class="reason-num">05</span>
+        <span class="reason-icon">🔄</span>
+        <h3>高価買取で実質値引き</h3>
+        <p>回収品の中から買取可能な品を査定。回収費用から差し引きいたします。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Wave Divider ==================== -->
+<div class="wave-divider flip">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C360,48 720,16 1440,40 L1440,48 L0,48 Z" fill="#F4F7FB"/>
+  </svg>
+</div>
+
+<!-- ==================== Section 5: Pricing ==================== -->
+<section class="pricing section-pad" id="pricing">
+  <div class="inner">
+    <div class="heading-wrap anim">
+      <h2>シンプルで分かりやすい<strong>料金プラン</strong></h2>
+      <p>お得なパック料金をご用意しています</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card anim">
+        <div class="price-header">
+          <h3>ミニパック</h3>
+          <p>ちょっとしたお片付けに</p>
+        </div>
+        <div class="price-body">
+          <p class="price-amount">5,500<span class="yen">円〜（税込）</span></p>
+          <p class="price-vehicle">対応車両：カゴ車</p>
+          <a href="tel:0120-XXX-XXX" class="btn btn-outline">無料見積もり</a>
+        </div>
+      </div>
+      <div class="price-card popular anim anim-delay-1">
+        <div class="price-header">
+          <h3>レギュラーパック</h3>
+          <p>1人暮らしのお引越しに</p>
+        </div>
+        <div class="price-body">
+          <p class="price-amount">16,500<span class="yen">円〜（税込）</span></p>
+          <p class="price-vehicle">対応車両：軽トラ</p>
+          <a href="tel:0120-XXX-XXX" class="btn btn-outline">無料見積もり</a>
+        </div>
+      </div>
+      <div class="price-card anim anim-delay-2">
+        <div class="price-header">
+          <h3>ファミリーパック</h3>
+          <p>ご家族のお片付けに</p>
+        </div>
+        <div class="price-body">
+          <p class="price-amount">33,000<span class="yen">円〜（税込）</span></p>
+          <p class="price-vehicle">対応車両：1〜2tトラック</p>
+          <a href="tel:0120-XXX-XXX" class="btn btn-outline">無料見積もり</a>
+        </div>
+      </div>
+      <div class="price-card anim anim-delay-3">
+        <div class="price-header">
+          <h3>まるごとパック</h3>
+          <p>一軒家・ゴミ屋敷に</p>
+        </div>
+        <div class="price-body">
+          <p class="price-amount">要相談</p>
+          <p class="price-vehicle">対応車両：大型トラック</p>
+          <a href="tel:0120-XXX-XXX" class="btn btn-outline">無料見積もり</a>
+        </div>
+      </div>
+    </div>
+    <p class="price-note">※料金は目安です。回収品の量・状態により変動します。まずは無料見積もりをご利用ください。</p>
+  </div>
+</section>
+
+<!-- ==================== Wave Divider ==================== -->
+<div class="wave-divider">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C480,48 960,8 1440,36 L1440,48 L0,48 Z" fill="#F4F7FB"/>
+  </svg>
+</div>
+
+<!-- ==================== Section 6: Voice ==================== -->
+<section class="voice section-pad" id="voice">
+  <div class="inner">
+    <div class="heading-wrap anim">
+      <h2>ご利用いただいた<strong>お客様の声</strong></h2>
+    </div>
+    <div class="voice-grid">
+      <div class="voice-card anim">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">引越し前日に依頼しましたが、当日対応してくれて助かりました。スタッフの方も礼儀正しく安心でした。</p>
+        <p class="voice-attr">30代女性・世田谷区</p>
+      </div>
+      <div class="voice-card anim anim-delay-1">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">他社より2万円近く安かったです。見積もり通りの金額で追加もなく、信頼できます。</p>
+        <p class="voice-attr">40代男性・練馬区</p>
+      </div>
+      <div class="voice-card anim anim-delay-2">
+        <p class="voice-stars">★★★★★</p>
+        <p class="voice-text">遺品整理でお願いしました。丁寧に仕分けしていただき、買取もしてもらえたので費用が抑えられました。</p>
+        <p class="voice-attr">50代女性・足立区</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Wave Divider ==================== -->
+<div class="wave-divider flip">
+  <svg viewBox="0 0 1440 48" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,0 C480,48 960,8 1440,36 L1440,48 L0,48 Z" fill="#F4F7FB"/>
+  </svg>
+</div>
+
+<!-- ==================== Section 7: Flow ==================== -->
+<section class="flow section-pad" id="flow">
+  <div class="inner">
+    <div class="heading-wrap anim">
+      <h2>カンタン<strong>5</strong>ステップ！ご利用の流れ</h2>
+    </div>
+    <div class="flow-steps">
+      <div class="flow-step anim">
+        <span class="flow-num">01</span>
+        <div class="flow-step-text">
+          <h3>お問い合わせ</h3>
+          <p>お電話・LINE・フォームから<br>お気軽にご連絡ください</p>
+        </div>
+      </div>
+      <div class="flow-step anim anim-delay-1">
+        <span class="flow-num">02</span>
+        <div class="flow-step-text">
+          <h3>無料見積もり</h3>
+          <p>現場訪問またはお写真で<br>正確なお見積もり</p>
+        </div>
+      </div>
+      <div class="flow-step anim anim-delay-2">
+        <span class="flow-num">03</span>
+        <div class="flow-step-text">
+          <h3>作業開始</h3>
+          <p>自社スタッフが<br>丁寧に搬出・回収</p>
+        </div>
+      </div>
+      <div class="flow-step anim anim-delay-3">
+        <span class="flow-num">04</span>
+        <div class="flow-step-text">
+          <h3>清掃</h3>
+          <p>作業後のお部屋を<br>丁寧にお掃除</p>
+        </div>
+      </div>
+      <div class="flow-step anim anim-delay-4">
+        <span class="flow-num">05</span>
+        <div class="flow-step-text">
+          <h3>完了・お支払い</h3>
+          <p>現金・カード・<br>PayPay対応</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Section 8: CTA ==================== -->
+<section class="cta-section" id="cta">
+  <div class="inner cta-inner">
+    <div class="anim">
+      <h2>まずは無料見積もりから、<br>お気軽にご相談ください</h2>
+      <span class="cta-phone">0120-XXX-XXX</span>
+      <p class="cta-phone-note">24時間365日受付対応</p>
+      <span class="cta-web-badge">WEB申し込み限定 <strong>20%OFF</strong></span>
+      <div class="cta-buttons">
+        <a href="tel:0120-XXX-XXX" class="btn btn-accent">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          今すぐ電話で相談
+        </a>
+        <a href="#" class="btn btn-green">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          LINEで無料見積もり
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== Section 9: Footer ==================== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <p class="f-logo">リライフ東京</p>
+        <p class="f-logo-sub">Re:Life Tokyo</p>
+        <p style="font-size:.85rem;line-height:1.6;max-width:320px">暮らしを、もう一度軽くする。<br>東京都全域の不用品回収・粗大ゴミ処分はリライフ東京にお任せください。</p>
+      </div>
+      <div class="footer-info">
+        <dl>
+          <dt>対応エリア</dt>
+          <dd>東京都全域</dd>
+        </dl>
+        <dl>
+          <dt>営業時間</dt>
+          <dd>24時間365日</dd>
+        </dl>
+        <dl>
+          <dt>お支払い方法</dt>
+          <dd>現金 / クレジットカード / PayPay</dd>
+        </dl>
+        <dl>
+          <dt>電話番号</dt>
+          <dd>0120-XXX-XXX</dd>
+        </dl>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2026 Re:Life Tokyo All Rights Reserved.</p>
+      <p class="footer-credit">Produced by AKASHIKI</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== SP Bottom Fixed Bar ==================== -->
+<div class="sp-bottom-bar">
+  <a href="tel:0120-XXX-XXX" class="sp-bottom-btn phone">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    電話で相談
+  </a>
+  <a href="#" class="sp-bottom-btn line">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+    LINE見積もり
+  </a>
+</div>
+
+<!-- ==================== JavaScript ==================== -->
+<script>
+(function(){
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.anim').forEach(function(el){observer.observe(el)});
+})();
+</script>
+</body>
+</html>
